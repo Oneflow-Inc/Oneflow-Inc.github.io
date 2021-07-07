@@ -1,0 +1,31 @@
+{% extends "_includes/default.njk" %}
+
+{% block title %}OneFlow{% endblock %}
+
+{% block content %}
+  <div class="fixed inset-0 flex justify-center items-center" x-data="root">
+   <div class="flex flex-col">
+      <div class="inline-flex" role="group" aria-label="Button group">
+        <template x-for="build in builds">
+          <button x-text="build" x-on:click="selected.build = build" :class="buttonClass(selected.build == build)"></button>
+        </template>
+      </div>
+      {# <div class="inline-flex" role="group" aria-label="Button group">
+        <template x-for="package in packages">
+          <button x-text="package" :class="buttonClass(selected.package == package)" x-on:click="selected.package = package"></button>
+        </template>
+      </div> #}
+      <div class="inline-flex" role="group" aria-label="Button group">
+        <template x-for="platform in platforms">
+          <button x-text="platform" x-on:click="selected.platform = platform" :class="buttonClass(selected.platform == platform)"></button>
+        </template>
+      </div>
+      <div class="inline-flex" role="group" aria-label="Button group">
+        <template x-for="cudaVersion in cudaVersions">
+          <button x-text="cudaVersion" x-on:click="selected.cudaVersion = cudaVersion" :class="buttonClass(selected.cudaVersion == cudaVersion)"></button>
+        </template>
+      </div>
+      <p class="text-lg" x-text="cmd"></p>
+    </div>
+  </div>
+{% endblock %}
