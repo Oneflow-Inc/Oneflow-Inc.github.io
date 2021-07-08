@@ -40,9 +40,9 @@ document.addEventListener("alpine:init", () => {
         },
         cmd() {
             if (this.selected.build == 'Stable') {
-                return `python3 -m pip install -f https://release.oneflow.info oneflow==0.4.0+${this.platformStr()} --user`
+                return `python3 -m pip install -f https://release.oneflow.info oneflow==0.4.0+${this.platformStr()}`
             } else if (this.selected.build == 'Nightly') {
-                return `python3 -m pip install oneflow --user -f https://staging.oneflow.info/branch/master/${this.platformStr()}`
+                return `python3 -m pip install oneflow -f https://staging.oneflow.info/branch/master/${this.platformStr()}`
             } else {
                 return "not available"
             }
