@@ -9,7 +9,7 @@ document.addEventListener("alpine:init", () => {
             build: 'Stable',
             platform: 'CUDA',
             package: 'pip',
-            cudaVersion: '10.0',
+            cudaVersion: '10.2',
         },
         // TODO: add notice on CUDA driver
         selectedCudaVersion() {
