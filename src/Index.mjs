@@ -38,7 +38,7 @@ function platformPlusName(p) {
   } else if (p.TAG === /* CUDA */0) {
     return "cu" + p._0.replace(".", "");
   } else {
-    return "cu" + p._0.replace(".", "") + ".xla";
+    return "cu" + p._0.replace(".", "") + "_xla";
   }
 }
 

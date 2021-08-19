@@ -34,7 +34,7 @@ module Variant = {
 let platformPlusName = (p: Variant.platform) => {
   switch p {
   | Variant.CUDA(ver) => "cu" ++ Js.String.replace(".", "", ver)
-  | Variant.CUDA_XLA(ver) => "cu" ++ Js.String.replace(".", "", ver) ++ ".xla"
+  | Variant.CUDA_XLA(ver) => "cu" ++ Js.String.replace(".", "", ver) ++ "_xla"
   | Variant.CPU => "cpu"
   }
 }
