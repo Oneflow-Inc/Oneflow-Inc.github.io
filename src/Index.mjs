@@ -32,13 +32,13 @@ function Index$Variant$Option(Props) {
             });
 }
 
-function platformPlusName(p) {
+function platformPkgName(p, joiner) {
   if (typeof p === "number") {
     return "cpu";
   } else if (p.TAG === /* CUDA */0) {
     return "cu" + p._0.replace(".", "");
   } else {
-    return "cu" + p._0.replace(".", "") + "_xla";
+    return "cu" + p._0.replace(".", "") + joiner + "xla";
   }
 }
 
@@ -62,7 +62,7 @@ function pipInstallCommnad(selected) {
   var match = selected.build;
   return [
             "python3 -m pip install -f",
-            match ? "https://staging.oneflow.info/branch/master/" + platformPlusName(selected.platform) + " oneflow" : "https://release.oneflow.info oneflow==0.4.0+" + platformPlusName(selected.platform),
+            match ? "https://staging.oneflow.info/branch/master/" + platformPkgName(selected.platform, "_") + " oneflow" : "https://release.oneflow.info oneflow==0.4.0+" + platformPkgName(selected.platform, "."),
             ""
           ].join(" ");
 }

@@ -31,10 +31,10 @@ module Variant = {
       </Tab>
   }
 }
-let platformPlusName = (p: Variant.platform) => {
+let platformPkgName = (p: Variant.platform, joiner: string) => {
   switch p {
   | Variant.CUDA(ver) => "cu" ++ Js.String.replace(".", "", ver)
-  | Variant.CUDA_XLA(ver) => "cu" ++ Js.String.replace(".", "", ver) ++ "_xla"
+  | Variant.CUDA_XLA(ver) => "cu" ++ Js.String.replace(".", "", ver) ++ joiner ++ "xla"
   | Variant.CPU => "cpu"
   }
 }
@@ -65,10 +65,10 @@ let pipInstallCommnad = (selected: Variant.t) => {
       "python3 -m pip install -f",
       switch selected.build {
       | Variant.Stable =>
-        "https://release.oneflow.info oneflow==0.4.0+" ++ platformPlusName(selected.platform)
+        "https://release.oneflow.info oneflow==0.4.0+" ++ platformPkgName(selected.platform, ".")
       | Variant.Nightly =>
         "https://staging.oneflow.info/branch/master/" ++
-        platformPlusName(selected.platform) ++ " oneflow"
+        platformPkgName(selected.platform, "_") ++ " oneflow"
       },
       "",
     ],
