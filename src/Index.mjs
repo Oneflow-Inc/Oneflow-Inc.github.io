@@ -62,7 +62,7 @@ function pipInstallCommnad(selected) {
   var match = selected.build;
   return [
             "python3 -m pip install -f",
-            match ? "https://staging.oneflow.info/branch/master/" + platformPkgName(selected.platform, "_") + " oneflow" : "https://release.oneflow.info oneflow==0.4.0+" + platformPkgName(selected.platform, "."),
+            match ? "https://staging.oneflow.info/branch/master/" + platformPkgName(selected.platform, "_") + " --pre oneflow" : "https://release.oneflow.info oneflow==0.6.0+" + platformPkgName(selected.platform, "."),
             ""
           ].join(" ");
 }
@@ -163,24 +163,13 @@ function $$default(param) {
   ];
   var platforms = [
     "CUDA",
-    "CUDA_XLA",
     "CPU"
   ];
   var cudaVersions = [
-    "10.0",
-    "10.1",
     "10.2",
-    "11.0",
-    "11.1",
     "11.2"
   ];
-  var xlaCudaVersions = [
-    "10.0",
-    "10.1",
-    "10.2",
-    "11.0",
-    "11.1"
-  ];
+  var xlaCudaVersions = [];
   var defaultIndexOfCudaVersion = function (state) {
     var match = state.selected.platform;
     if (typeof match === "number") {

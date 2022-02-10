@@ -65,10 +65,10 @@ let pipInstallCommnad = (selected: Variant.t) => {
       "python3 -m pip install -f",
       switch selected.build {
       | Variant.Stable =>
-        "https://release.oneflow.info oneflow==0.4.0+" ++ platformPkgName(selected.platform, ".")
+        "https://release.oneflow.info oneflow==0.6.0+" ++ platformPkgName(selected.platform, ".")
       | Variant.Nightly =>
         "https://staging.oneflow.info/branch/master/" ++
-        platformPkgName(selected.platform, "_") ++ " oneflow"
+        platformPkgName(selected.platform, "_") ++ " --pre oneflow"
       },
       "",
     ],
@@ -117,9 +117,9 @@ let default = () => {
     },
   )
   let builds = ["Stable", "Nightly"]
-  let platforms = ["CUDA", "CUDA_XLA", "CPU"]
-  let cudaVersions = ["10.0", "10.1", "10.2", "11.0", "11.1", "11.2"]
-  let xlaCudaVersions = ["10.0", "10.1", "10.2", "11.0", "11.1"]
+  let platforms = ["CUDA", "CPU"]
+  let cudaVersions = ["10.2", "11.2"]
+  let xlaCudaVersions = []
   let defaultIndexOfCudaVersion = (state: state) =>
     switch state.selected.platform {
     | Variant.CUDA(_) => Js.Array.indexOf("10.2", cudaVersions)
